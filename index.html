@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> SSR Rendering</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- <script>
+      $(function(){
+        var url = document.getElementById("url").value
+        $('#btn').click(function(){
+            $.ajax({url: "/download", type: 'GET', data: {url: url}, success: function(result){
+              console.log("File download successful")
+            }, error: function(error){
+              console.log("Error occurred in file download")
+            }});
+        })
+      })
+    </script> -->
+</head>
+<!-- <body>
+    <h2>Enter url of any webpage</h2>
+    <input type="text" name="url" id = "url">
+    <button id="btn">Download</button>
+</body> -->
+<body>
+  <form action="/download" method="post">
+    <label for="url">Enter URL: </label>
+    <input id="url" type="text" name="url" value="">
+    <input type="submit" value="OK">
+</form>
+</body>
+</html>
