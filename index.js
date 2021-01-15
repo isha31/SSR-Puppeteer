@@ -16,13 +16,9 @@ app.use(async (req, res, next) => {
     return res.status(400).json({
       code: "0001",
       message:
-        'URL is required. For example: {"url": "http://mint.datonis.io/page"}'
+        'URL is required. For example: {"url": "https://www.google.com/"}'
     });
   }
-  if (!url.includes("://")) {
-    url = `http://${url}`;
-  }
-  debugger;
 
   try {
     let fileName = "report"; //Below logic is for pdf generation, Modify it later for supporting various types [pdf,screenshots]
@@ -37,7 +33,7 @@ app.use(async (req, res, next) => {
     pdfOptions.margin = body["margin"] || {
       top: "0.5cm",
       right: "0.5cm",
-      bottom: "1cm",
+      bottom: "0.5cm",
       left: "0.5cm"
     };
 
@@ -46,8 +42,6 @@ app.use(async (req, res, next) => {
     networkOptions.waitUntil = "networkidle0";
 
     let reqHeader = body.additional_headers || {}; //pass header in every request
-    // let reqHeader = {"X-Access-Key": 'f81c4d773a2d7da4t425e6td1c5ft4c1b4442te3',"email": 'hricha_kabir@altizon.com',"time-zone": 'Mumbai'}
-    reqHeader["server-rendering"] = "true"; //For avoiding certain things specially in case of SSR
 
     // Render PDF
     const result = await renderer.pdf(url, {
